@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
+
 import Link from "next/link";
 
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import clsx from "clsx";
 
 interface NavItemProps {
@@ -9,20 +11,29 @@ interface NavItemProps {
 }
 
 export default function NavItem({ title, link }: NavItemProps) {
-  const path = usePathname();
+  const [hash, setHash] = useState("");
 
-  const isHightLight = path.includes(link);
+  const params = useParams();
+
+  useEffect(() => {
+    setHash(window.location.hash);
+  }, [params]);
+
+  const isHighlight = link.includes(hash);
 
   return (
     <Link
-      className={clsx(
-        "text-primary font-bold duration-200",
-        "hover:text-primary-hover",
-        isHightLight ? "text-primary-highlight" : "text-primary",
-      )}
+      className={clsx("text-primary font-bold duration-200 hover:scale-105", {
+        ["brightness-0"]: isHighlight,
+      })}
       href={link}
     >
       {title}
+      <div
+        className={clsx("bg-primary h-[1px] w-full duration-200", {
+          ["bg-paper"]: isHighlight,
+        })}
+      />
     </Link>
   );
 }

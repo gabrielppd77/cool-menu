@@ -69,8 +69,7 @@ export default function Home() {
         </section>
 
         <section id="menu" className="bg-paper w-full rounded p-4 shadow-lg">
-          <h1 className="text-primary font-bold">MENU</h1>
-          {/* {isLoading ? <>Carregando...</> : <CategoryNav />} */}
+          {isLoading ? <>Carregando...</> : <CategoryNav />}
         </section>
 
         {/* <div className="flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col gap-4 bg-muted/40 p-4 md:gap-8 md:p-10">

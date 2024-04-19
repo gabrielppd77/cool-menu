@@ -12,8 +12,6 @@ const config: Config = {
     extend: {
       colors: {
         primary: colors.gray[600],
-        "primary-hover": colors.gray[500],
-        "primary-highlight": colors.gray[50],
         paper: colors.gray[50],
       },
     },
