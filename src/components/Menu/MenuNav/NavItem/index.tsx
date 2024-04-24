@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import Link from "next/link";
 
-import { useParams, usePathname } from "next/navigation";
+import { useParams } from "next/navigation";
 import clsx from "clsx";
 
 interface NavItemProps {
@@ -23,16 +23,19 @@ export default function NavItem({ title, link }: NavItemProps) {
 
   return (
     <Link
-      className={clsx("text-primary font-bold duration-200 hover:scale-105", {
+      className={clsx("font-bold text-primary duration-200 hover:scale-105", {
         ["brightness-0"]: isHighlight,
       })}
       href={link}
     >
       {title}
       <div
-        className={clsx("bg-primary h-[1px] w-full duration-200", {
-          ["bg-paper"]: isHighlight,
-        })}
+        className={clsx(
+          "h-[1px] w-full bg-paper transition-colors duration-200",
+          {
+            ["bg-primary"]: isHighlight,
+          },
+        )}
       />
     </Link>
   );
