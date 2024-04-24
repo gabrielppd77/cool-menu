@@ -10,22 +10,22 @@ export function Menu() {
   const { data, isLoading } = useGetMenu();
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const header = headerRef.current;
-  //     if (header) {
-  //       const headerRect = header.getBoundingClientRect();
-  //       setIsHeaderVisible(
-  //         headerRect.bottom > 0 && headerRect.top < window.innerHeight,
-  //       );
-  //     }
-  //   };
+  useEffect(() => {
+    const handleScroll = () => {
+      const header = headerRef.current;
+      if (header) {
+        const headerRect = header.getBoundingClientRect();
+        setIsHeaderVisible(
+          headerRect.bottom > 0 && headerRect.top < window.innerHeight,
+        );
+      }
+    };
 
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   if (isLoading) {
     return <div>Carregando...</div>;
@@ -36,12 +36,12 @@ export function Menu() {
       <div ref={headerRef}>
         <MenuNav data={data} />
       </div>
-      {/* {!isHeaderVisible && (
+      {!isHeaderVisible && (
         <div className="fixed left-0 right-0 top-0 z-50 bg-paper">
           <MenuNav data={data} />
         </div>
-      )} */}
-      {/* <MenuContent data={data} /> */}
+      )}
+      <MenuContent data={data} />
     </div>
   );
 }

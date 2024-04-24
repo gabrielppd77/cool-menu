@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 
-import Link from "next/link";
-
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import clsx from "clsx";
 
 interface NavItemProps {
@@ -14,6 +12,7 @@ export default function NavItem({ title, link }: NavItemProps) {
   const [hash, setHash] = useState("");
 
   const params = useParams();
+  const router = useRouter();
 
   useEffect(() => {
     setHash(window.location.hash);
@@ -22,11 +21,11 @@ export default function NavItem({ title, link }: NavItemProps) {
   const isHighlight = link.includes(hash);
 
   return (
-    <Link
+    <div
       className={clsx("font-bold text-primary duration-200 hover:scale-105", {
         ["brightness-0"]: isHighlight,
       })}
-      href={link}
+      onClick={() => router.push(link)}
     >
       {title}
       <div
@@ -37,6 +36,6 @@ export default function NavItem({ title, link }: NavItemProps) {
           },
         )}
       />
-    </Link>
+    </div>
   );
 }

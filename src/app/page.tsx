@@ -20,7 +20,7 @@ export default function Home() {
           </div>
         </div>
 
-        <section id="menu" className="w-full rounded bg-paper p-4 shadow-lg">
+        <section id="menu" className="rounded bg-paper p-4 shadow-lg">
           <Menu />
         </section>
 
