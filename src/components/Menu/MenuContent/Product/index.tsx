@@ -29,6 +29,7 @@ export function Product({ title, description, price, imageUrl }: ProductProps) {
         height={240}
         width={240}
         loader={() => imageUrl}
+        unoptimized
       />
     </div>
   );

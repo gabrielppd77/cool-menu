@@ -18,7 +18,7 @@ const data: MenuDataType[] = [
   {
     categoryName: "ESPECIAL DA CASA",
     link: "especial-da-casa",
-    imageUrl: "/test-1",
+    imageUrl: "/utensils.svg",
     products: [
       {
         title: "CARNE DE LATA",
@@ -32,12 +32,12 @@ const data: MenuDataType[] = [
   {
     categoryName: "PRATOS EXECUTIVOS",
     link: "pratos-executivos",
-    imageUrl: "/test-1",
+    imageUrl: "/utensils.svg",
     products: [
       {
         title: "CARNE",
         description: "FILÉ DE FRANGO ALCATRA LOMBO TILÁPIA.",
-        imageUrl: "",
+        imageUrl: "/beef.svg",
         price: 0,
       },
     ],
@@ -45,7 +45,7 @@ const data: MenuDataType[] = [
   {
     categoryName: "JANTAR",
     link: "jantar",
-    imageUrl: "/test-1",
+    imageUrl: "/utensils.svg",
     products: [
       {
         title: "TROPEIRO",
@@ -80,19 +80,19 @@ const data: MenuDataType[] = [
   {
     categoryName: "PORÇÕES",
     link: "porcoes",
-    imageUrl: "/test-1",
+    imageUrl: "/utensils.svg",
     products: [
       {
         title: "BARCA",
         description:
           "LINGUIÇA DE PERNIL, CONTRAFILÉ, PERNIL, BATATA FRITA E MANDIOCA.",
-        imageUrl: "/test-1",
+        imageUrl: "/beef.svg",
         price: 89.9,
       },
       {
         title: "TRIO MINEIRO",
         description: "TOUCINHO COM CARNE, LINGUIÇA DEPERNIL E MANDIOCA.",
-        imageUrl: "/test-1",
+        imageUrl: "/beef.svg",
         price: 69.9,
       },
     ],
@@ -100,7 +100,7 @@ const data: MenuDataType[] = [
   {
     categoryName: "SOBREMESAS",
     link: "sobremesas",
-    imageUrl: "/test-1",
+    imageUrl: "/utensils.svg",
     products: [
       {
         title: "BANOFFEE",
@@ -135,24 +135,24 @@ const data: MenuDataType[] = [
   {
     categoryName: "CAFÉ DA MANHÃ",
     link: "cafe-da-manha",
-    imageUrl: "/test-1",
+    imageUrl: "/utensils.svg",
     products: [
       {
         title: "COMBO LILI GRILL",
         description: "",
-        imageUrl: "/test-1",
+        imageUrl: "/beef.svg",
         price: 0,
       },
       {
         title: "MISTO QUENTE",
         description: "",
-        imageUrl: "/test-1",
+        imageUrl: "/beef.svg",
         price: 0,
       },
       {
         title: "FATIA, BOLO DO DIA",
         description: "",
-        imageUrl: "/test-1",
+        imageUrl: "/beef.svg",
         price: 0,
       },
     ],
@@ -160,24 +160,24 @@ const data: MenuDataType[] = [
   {
     categoryName: "DRINKS",
     link: "drinks",
-    imageUrl: "/test-1",
+    imageUrl: "/utensils.svg",
     products: [
       {
         title: "GIN&GRILL",
         description: "Gym, água tônica, especiariase gelo.",
-        imageUrl: "/test-1",
+        imageUrl: "/beef.svg",
         price: 20,
       },
       {
         title: "PARRILA RED",
         description: "Gym, água tônica, morango e gelo.",
-        imageUrl: "/test-1",
+        imageUrl: "/beef.svg",
         price: 20,
       },
       {
         title: "GRELHADO MOJITO",
         description: "Rum branco, limão, açúcar, hortelã, soda e gelo.",
-        imageUrl: "/test-1",
+        imageUrl: "/beef.svg",
         price: 16.9,
       },
     ],
@@ -185,24 +185,24 @@ const data: MenuDataType[] = [
   {
     categoryName: "BEBIDAS",
     link: "bebidas",
-    imageUrl: "/test-1",
+    imageUrl: "/utensils.svg",
     products: [
       {
         title: "ÁGUA MINERAL SEM GÁS",
         description: "500ML",
-        imageUrl: "/test-1",
+        imageUrl: "/beef.svg",
         price: 2.5,
       },
       {
         title: "ÁGUA MINERAL COM GÁS",
         description: "500ML",
-        imageUrl: "/test-1",
+        imageUrl: "/beef.svg",
         price: 3,
       },
       {
         title: "ÁGUA TÔNICA",
         description: "350ML",
-        imageUrl: "/test-1",
+        imageUrl: "/beef.svg",
         price: 5,
       },
     ],

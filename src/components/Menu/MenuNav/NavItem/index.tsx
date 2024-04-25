@@ -20,12 +20,16 @@ export default function NavItem({ title, link }: NavItemProps) {
 
   const isHighlight = link.includes(hash);
 
+  function handleClick() {
+    router.push(link);
+  }
+
   return (
     <div
       className={clsx("font-bold text-primary duration-200 hover:scale-105", {
         ["brightness-0"]: isHighlight,
       })}
-      onClick={() => router.push(link)}
+      onClick={handleClick}
     >
       {title}
       <div

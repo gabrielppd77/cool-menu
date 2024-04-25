@@ -38,12 +38,10 @@ export function MenuNav({ data }: MenuNavProps) {
           right: 0,
           left: -navWidth,
         }}
-        dragTransition={{ bounceStiffness: 600, bounceDamping: 17 }}
+        dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
       >
         {data.map((d, index) => (
-          <motion.div key={index}>
-            <NavItem title={d.categoryName} link={"#" + d.link} />
-          </motion.div>
+          <NavItem key={index} title={d.categoryName} link={"#" + d.link} />
         ))}
       </motion.div>
     </motion.div>

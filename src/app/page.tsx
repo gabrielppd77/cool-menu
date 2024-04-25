@@ -4,7 +4,6 @@ import Image from "next/image";
 
 import { Header } from "@/components/Header";
 import { Menu } from "@/components/Menu";
-import { GoHome } from "@/components/GoHome";
 
 export default function Home() {
   return (
@@ -23,8 +22,6 @@ export default function Home() {
         <section id="menu" className="rounded bg-paper p-4 shadow-lg">
           <Menu />
         </section>
-
-        <GoHome />
       </div>
     </main>
   );
