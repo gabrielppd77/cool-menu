@@ -7,7 +7,7 @@ import { Menu } from "@/components/Menu";
 
 export default function Home() {
   return (
-    <main id="home" className="flex min-h-full w-full justify-center">
+    <main className="flex min-h-full w-full justify-center">
       <div className="w-full max-w-7xl px-8">
         <Header />
 
@@ -19,7 +19,7 @@ export default function Home() {
           </div>
         </div>
 
-        <section id="menu" className="rounded bg-paper p-4 shadow-lg">
+        <section className="rounded bg-paper p-4 shadow-lg">
           <Menu />
         </section>
       </div>

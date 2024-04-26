@@ -1,13 +1,12 @@
 import Link from "next/link";
 
 interface NavItemProps {
-  link: string;
   label: string;
 }
 
-export function NavItem({ label, link }: NavItemProps) {
+export function NavItem({ label }: NavItemProps) {
   return (
-    <Link className="text-primary font-bold duration-200" href={link}>
+    <Link className="font-bold text-primary duration-200" href="/">
       {label}
     </Link>
   );

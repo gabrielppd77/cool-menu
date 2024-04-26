@@ -13,6 +13,8 @@ export function MenuNav({ data }: MenuNavProps) {
   const refNav = useRef<any>(null);
   const [navWidth, setNavWidth] = useState(0);
 
+  const [selected, setSelected] = useState(-1);
+
   useEffect(() => {
     const handleResize = () => {
       if (refNav.current) {
@@ -26,10 +28,14 @@ export function MenuNav({ data }: MenuNavProps) {
     };
   }, []);
 
+  function onClickItem(index: number) {
+    setSelected(index);
+  }
+
   return (
     <motion.div
       ref={refNav}
-      className="flex h-10 items-center overflow-hidden border-b px-2"
+      className="flex h-10 w-max items-center overflow-hidden border-b px-2"
     >
       <motion.div
         className="flex h-full w-max items-center gap-4 whitespace-nowrap"
@@ -41,7 +47,12 @@ export function MenuNav({ data }: MenuNavProps) {
         dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
       >
         {data.map((d, index) => (
-          <NavItem key={index} title={d.categoryName} link={"#" + d.link} />
+          <NavItem
+            key={index}
+            label={d.name}
+            isSelected={selected === index}
+            onClick={() => onClickItem(index)}
+          />
         ))}
       </motion.div>
     </motion.div>

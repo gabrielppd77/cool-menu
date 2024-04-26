@@ -1,27 +1,23 @@
 import { NextResponse } from "next/server";
 
 export interface ProductType {
-  title: string;
+  name: string;
   description: string;
   imageUrl: string;
   price: number;
 }
 
 export interface MenuDataType {
-  categoryName: string;
-  imageUrl: string;
-  link: string;
+  name: string;
   products: ProductType[];
 }
 
 const data: MenuDataType[] = [
   {
-    categoryName: "ESPECIAL DA CASA",
-    link: "especial-da-casa",
-    imageUrl: "/utensils.svg",
+    name: "ESPECIAL DA CASA",
     products: [
       {
-        title: "CARNE DE LATA",
+        name: "CARNE DE LATA",
         description: "CARNE DE PORCO, ARROZ, FEIJÃO, COUVE, MANDIOCA E BATATA.",
         imageUrl:
           "https://lh3.google.com/u/0/d/1jlfUfQKBYyL7ttQbnJPfWWxwlv0lb30-=w1278-h918-iv1",
@@ -30,12 +26,10 @@ const data: MenuDataType[] = [
     ],
   },
   {
-    categoryName: "PRATOS EXECUTIVOS",
-    link: "pratos-executivos",
-    imageUrl: "/utensils.svg",
+    name: "PRATOS EXECUTIVOS",
     products: [
       {
-        title: "CARNE",
+        name: "CARNE",
         description: "FILÉ DE FRANGO ALCATRA LOMBO TILÁPIA.",
         imageUrl: "/beef.svg",
         price: 0,
@@ -43,33 +37,31 @@ const data: MenuDataType[] = [
     ],
   },
   {
-    categoryName: "JANTAR",
-    link: "jantar",
-    imageUrl: "/utensils.svg",
+    name: "JANTAR",
     products: [
       {
-        title: "TROPEIRO",
+        name: "TROPEIRO",
         description: "",
         imageUrl:
           "https://lh3.google.com/u/0/d/1y88iB8k7O1f18ZjkGlkuZTTTPe0Yjxg6=w1278-h918-iv1",
         price: 0,
       },
       {
-        title: "MACARRÃO À BOLONHESA",
+        name: "MACARRÃO À BOLONHESA",
         description: "",
         imageUrl:
           "https://lh3.google.com/u/0/d/1b301tbhWCa6xi0FZftlOszeZi8YuBODP=w1090-h831-iv1",
         price: 0,
       },
       {
-        title: "BATATA RECHEADA COM PRESUNTO E MUSSARELA",
+        name: "BATATA RECHEADA COM PRESUNTO E MUSSARELA",
         description: "",
         imageUrl:
           "https://lh3.google.com/u/0/d/1MVsla71IwFeBqWJmc14FrBQbfAGn7uqV=w1090-h831-iv1",
         price: 0,
       },
       {
-        title: "BATATA RECHEADA DE FRANGO COM BACON",
+        name: "BATATA RECHEADA DE FRANGO COM BACON",
         description: "",
         imageUrl:
           "https://lh3.google.com/u/0/d/1HistM8TOHw503ydCQFlI5C0UippWOWfB=w1090-h831-iv1",
@@ -78,19 +70,17 @@ const data: MenuDataType[] = [
     ],
   },
   {
-    categoryName: "PORÇÕES",
-    link: "porcoes",
-    imageUrl: "/utensils.svg",
+    name: "PORÇÕES",
     products: [
       {
-        title: "BARCA",
+        name: "BARCA",
         description:
           "LINGUIÇA DE PERNIL, CONTRAFILÉ, PERNIL, BATATA FRITA E MANDIOCA.",
         imageUrl: "/beef.svg",
         price: 89.9,
       },
       {
-        title: "TRIO MINEIRO",
+        name: "TRIO MINEIRO",
         description: "TOUCINHO COM CARNE, LINGUIÇA DEPERNIL E MANDIOCA.",
         imageUrl: "/beef.svg",
         price: 69.9,
@@ -98,33 +88,31 @@ const data: MenuDataType[] = [
     ],
   },
   {
-    categoryName: "SOBREMESAS",
-    link: "sobremesas",
-    imageUrl: "/utensils.svg",
+    name: "SOBREMESAS",
     products: [
       {
-        title: "BANOFFEE",
+        name: "BANOFFEE",
         description: "",
         imageUrl:
           "https://lh3.google.com/u/0/d/1KSyTE13Nn5wLoiJGnwLWMOqmn0DFYhZJ=w1090-h831-iv1",
         price: 0,
       },
       {
-        title: "PUDIM",
+        name: "PUDIM",
         description: "",
         imageUrl:
           "https://lh3.google.com/u/0/d/1MEFGT2PJFQew7NrSQ4aficMDShNJRqU1=w1090-h831-iv1",
         price: 0,
       },
       {
-        title: "PAVÊ",
+        name: "PAVÊ",
         description: "",
         imageUrl:
           "https://lh3.google.com/u/0/d/1sRRGE0WHNHjt0x7FGqnPGX-ov_v-EpV3=w1090-h831-iv1",
         price: 0,
       },
       {
-        title: "SORVETE DE CHOCOLATE COM CALDA DE CHOCOLATE",
+        name: "SORVETE DE CHOCOLATE COM CALDA DE CHOCOLATE",
         description: "",
         imageUrl:
           "https://lh3.google.com/u/0/d/13BlESlQP2_pimIWVZzU6eOao7rnS2_Mm=w1090-h831-iv1",
@@ -133,24 +121,22 @@ const data: MenuDataType[] = [
     ],
   },
   {
-    categoryName: "CAFÉ DA MANHÃ",
-    link: "cafe-da-manha",
-    imageUrl: "/utensils.svg",
+    name: "CAFÉ DA MANHÃ",
     products: [
       {
-        title: "COMBO LILI GRILL",
+        name: "COMBO LILI GRILL",
         description: "",
         imageUrl: "/beef.svg",
         price: 0,
       },
       {
-        title: "MISTO QUENTE",
+        name: "MISTO QUENTE",
         description: "",
         imageUrl: "/beef.svg",
         price: 0,
       },
       {
-        title: "FATIA, BOLO DO DIA",
+        name: "FATIA, BOLO DO DIA",
         description: "",
         imageUrl: "/beef.svg",
         price: 0,
@@ -158,24 +144,22 @@ const data: MenuDataType[] = [
     ],
   },
   {
-    categoryName: "DRINKS",
-    link: "drinks",
-    imageUrl: "/utensils.svg",
+    name: "DRINKS",
     products: [
       {
-        title: "GIN&GRILL",
+        name: "GIN&GRILL",
         description: "Gym, água tônica, especiariase gelo.",
         imageUrl: "/beef.svg",
         price: 20,
       },
       {
-        title: "PARRILA RED",
+        name: "PARRILA RED",
         description: "Gym, água tônica, morango e gelo.",
         imageUrl: "/beef.svg",
         price: 20,
       },
       {
-        title: "GRELHADO MOJITO",
+        name: "GRELHADO MOJITO",
         description: "Rum branco, limão, açúcar, hortelã, soda e gelo.",
         imageUrl: "/beef.svg",
         price: 16.9,
@@ -183,24 +167,22 @@ const data: MenuDataType[] = [
     ],
   },
   {
-    categoryName: "BEBIDAS",
-    link: "bebidas",
-    imageUrl: "/utensils.svg",
+    name: "BEBIDAS",
     products: [
       {
-        title: "ÁGUA MINERAL SEM GÁS",
+        name: "ÁGUA MINERAL SEM GÁS",
         description: "500ML",
         imageUrl: "/beef.svg",
         price: 2.5,
       },
       {
-        title: "ÁGUA MINERAL COM GÁS",
+        name: "ÁGUA MINERAL COM GÁS",
         description: "500ML",
         imageUrl: "/beef.svg",
         price: 3,
       },
       {
-        title: "ÁGUA TÔNICA",
+        name: "ÁGUA TÔNICA",
         description: "350ML",
         imageUrl: "/beef.svg",
         price: 5,

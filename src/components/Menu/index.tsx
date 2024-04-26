@@ -33,9 +33,7 @@ export function Menu() {
 
   return (
     <div>
-      <div ref={headerRef}>
-        <MenuNav data={data} />
-      </div>
+      <div ref={headerRef} />
       {!isHeaderVisible && (
         <div className="fixed left-0 right-0 top-0 z-50 bg-paper">
           <MenuNav data={data} />
