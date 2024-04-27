@@ -19,9 +19,7 @@ export default function Home() {
           </div>
         </div>
 
-        <section className="rounded bg-paper p-4 shadow-lg">
-          <Menu />
-        </section>
+        <Menu />
       </div>
     </main>
   );
