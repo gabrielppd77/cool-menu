@@ -15,12 +15,8 @@ export function Menu() {
         <div>Carregando...</div>
       ) : (
         <div>
-          <MenuNav
-            data={data}
-            categorySelected={categorySelected}
-            setCategorySelected={setCategorySelected}
-          />
-          <MenuContent data={data} />
+          <MenuNav />
+          <MenuContent />
         </div>
       )}
     </section>

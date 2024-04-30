@@ -1,37 +1,25 @@
-import { useEffect, useState } from "react";
-
 import { MenuDataType } from "@/app/api/route";
+import { useQuery } from "@tanstack/react-query";
+
+export const queryGetMenu = "get-menu";
 
 export function useGetMenu() {
-  const [data, setData] = useState<MenuDataType[]>([]);
-  const [isLoading, setLoading] = useState(false);
-
-  useEffect(() => {
-    async function getData() {
-      setLoading(true);
-      try {
-        const response = await fetch("/api", {
-          headers: {
-            Accept: "application/json",
-            method: "GET",
-          },
-        });
-
-        if (response) {
-          const data = await response.json();
-          setData(data);
-        }
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
+  async function handleRequest() {
+    const response = await fetch("/api", {
+      headers: {
+        Accept: "application/json",
+        method: "GET",
+      },
+    });
+    if (response) {
+      const data: MenuDataType[] = await response.json();
+      return data;
     }
-    getData();
-  }, []);
+    return [];
+  }
 
-  return {
-    data,
-    isLoading,
-  };
+  return useQuery({
+    queryKey: [queryGetMenu],
+    queryFn: handleRequest,
+  });
 }
