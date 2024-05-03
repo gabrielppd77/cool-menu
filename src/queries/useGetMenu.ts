@@ -1,5 +1,6 @@
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+
 import { MenuDataType } from "@/app/api/route";
-import { useQuery } from "@tanstack/react-query";
 
 export const queryGetMenu = "get-menu";
 
@@ -22,4 +23,9 @@ export function useGetMenu() {
     queryKey: [queryGetMenu],
     queryFn: handleRequest,
   });
+}
+
+export function useGetMenuCached() {
+  const queryClient = useQueryClient();
+  return queryClient.getQueryData<MenuDataType[]>([queryGetMenu]);
 }

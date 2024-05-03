@@ -1,7 +1,6 @@
-import { useEffect } from "react";
-
 import { useGetMenu } from "@/queries/useGetMenu";
 import { useMainContext } from "@/context/MainContext";
+import { useEffect, useRef } from "react";
 
 export function MenuContent() {
   const { data: _data, isLoading, isFetching } = useGetMenu();
@@ -10,16 +9,38 @@ export function MenuContent() {
   const { categorySelected, setCategorySelected } = useMainContext();
 
   useEffect(() => {
-    if (!categorySelected) return;
-    const element = document.getElementById(categorySelected);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-        inline: "center",
+    const handleScroll = () => {
+      data.forEach((category) => {
+        const element = document.getElementById(category.id);
+        if (!element) return;
+        const rect = element.getBoundingClientRect();
+        // if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+        //   setCategorySelected(category.id);
+        // }
+
+        const categoryCenter = rect.top + rect.height / 2; // Calcula o centro do elemento
+
+        if (categoryCenter >= 0 && categoryCenter <= window.innerHeight) {
+          setCategorySelected(category.id);
+        }
       });
-    }
-  }, [categorySelected]);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [data]);
+
+  // useEffect(() => {
+  //   if (!categorySelected) return;
+  //   const element = document.getElementById(categorySelected);
+  //   if (element) {
+  //     element.scrollIntoView({
+  //       behavior: "smooth",
+  //       block: "center",
+  //       inline: "center",
+  //     });
+  //   }
+  // }, [categorySelected]);
 
   // useEffect(() => {
   //   const handleScroll = () => {
@@ -52,6 +73,7 @@ export function MenuContent() {
 
   return (
     <div>
+      {!_data && <>Carregando...</>}
       {data.map((d) => (
         <section key={d.id} id={d.id}>
           <div className="font-bold">{d.name}</div>

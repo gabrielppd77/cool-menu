@@ -8,28 +8,13 @@ import { useMainContext } from "@/context/MainContext";
 
 export function NavContent() {
   const refNav = useRef<any>(null);
-  const [navWidth, setNavWidth] = useState(0);
+
+  const navWidth =
+    (refNav?.current?.scrollWidth || 0) - (refNav?.current?.offsetWidth || 0);
 
   const { categorySelected, setCategorySelected } = useMainContext();
   const { data: _data, isLoading, isFetching } = useGetMenu();
   const data = _data || [];
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (refNav.current) {
-        setNavWidth(refNav.current?.scrollWidth - refNav.current?.offsetWidth);
-      }
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  function onClickItem(id: string) {
-    setCategorySelected(id);
-  }
 
   return (
     <nav
@@ -48,7 +33,7 @@ export function NavContent() {
         {data.map((d) => (
           <div key={d.id} id={"nav" + d.id} className="relative">
             <div
-              onClick={(e) => onClickItem(d.id)}
+              onClick={(e) => setCategorySelected(d.id)}
               className={clsx(
                 "flex h-12 flex-col justify-center px-2.5 font-bold transition-colors duration-300",
                 {
