@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html style={{ scrollBehavior: "smooth" }} lang="pt-BR">
+    <html lang="pt-BR">
       <head>
         <link
           rel="icon"

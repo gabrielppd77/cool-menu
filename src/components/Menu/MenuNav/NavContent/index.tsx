@@ -1,39 +1,94 @@
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 
-import { motion } from "framer-motion";
-
 import { useGetMenu } from "@/queries/useGetMenu";
 import { useMainContext } from "@/context/MainContext";
 
-export function NavContent() {
-  const refNav = useRef<any>(null);
+const PREFIX_NAV_ITEM = "nav";
 
-  const navWidth =
-    (refNav?.current?.scrollWidth || 0) - (refNav?.current?.offsetWidth || 0);
+export function NavContent() {
+  const containerRef = useRef<any>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
   const { categorySelected, setCategorySelected } = useMainContext();
   const { data: _data, isLoading, isFetching } = useGetMenu();
   const data = _data || [];
 
+  useEffect(() => {
+    if (categorySelected) {
+      const element = document.getElementById(
+        PREFIX_NAV_ITEM + categorySelected,
+      );
+      if (element) {
+        element.scrollIntoView({
+          block: "center",
+          inline: "center",
+        });
+      }
+    }
+  }, [categorySelected]);
+
+  function handleClick(id: string) {
+    setCategorySelected(id);
+  }
+
+  const handleMouseDown = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
+    setIsDragging(true);
+    setStartX(event.pageX - containerRef.current.offsetLeft);
+    setScrollLeft(containerRef.current.scrollLeft);
+  };
+
+  const handleMouseMove = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
+    if (!isDragging) return;
+    const x = event.pageX - containerRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5; // Ajuste a sensibilidade do movimento conforme necessário
+    containerRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    const touch = event.touches[0];
+    setIsDragging(true);
+    setStartX(touch.pageX - containerRef.current.offsetLeft);
+    setScrollLeft(containerRef.current.scrollLeft);
+  };
+
+  const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    const touch = event.touches[0];
+    const x = touch.pageX - containerRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5; // Ajuste a sensibilidade do movimento conforme necessário
+    containerRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleDragEnd = () => {
+    setIsDragging(false);
+  };
+
   return (
     <nav
-      ref={refNav}
-      className="cursor-default overflow-hidden border-b-2 px-2"
+      className="cursor-default select-none overflow-hidden border-b-2"
+      ref={containerRef}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleDragEnd}
+      onMouseLeave={handleDragEnd}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleDragEnd}
+      onTouchCancel={handleDragEnd}
     >
-      <motion.div
-        className="flex whitespace-nowrap"
-        drag="x"
-        dragConstraints={{
-          right: 0,
-          left: -(navWidth + 8),
-        }}
-        dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
-      >
+      <div className="flex whitespace-nowrap">
         {data.map((d) => (
-          <div key={d.id} id={"nav" + d.id} className="relative">
+          <div key={d.id} className="relative">
             <div
-              onClick={(e) => setCategorySelected(d.id)}
+              id={PREFIX_NAV_ITEM + d.id}
+              onClick={(e) => handleClick(d.id)}
               className={clsx(
                 "flex h-12 flex-col justify-center px-2.5 font-bold transition-colors duration-300",
                 {
@@ -55,7 +110,7 @@ export function NavContent() {
             />
           </div>
         ))}
-      </motion.div>
+      </div>
     </nav>
   );
 }
