@@ -23,6 +23,7 @@ export function NavContent() {
       );
       if (element) {
         element.scrollIntoView({
+          behavior: "auto",
           block: "center",
           inline: "center",
         });
@@ -31,7 +32,14 @@ export function NavContent() {
   }, [categorySelected]);
 
   function handleClick(id: string) {
-    setCategorySelected(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "auto",
+        block: "center",
+        inline: "center",
+      });
+    }
   }
 
   const handleMouseDown = (
@@ -88,7 +96,7 @@ export function NavContent() {
           <div key={d.id} className="relative">
             <div
               id={PREFIX_NAV_ITEM + d.id}
-              onClick={(e) => handleClick(d.id)}
+              onClick={() => handleClick(d.id)}
               className={clsx(
                 "flex h-12 flex-col justify-center px-2.5 font-bold transition-colors duration-300",
                 {
