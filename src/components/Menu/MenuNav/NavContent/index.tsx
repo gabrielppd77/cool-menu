@@ -3,6 +3,7 @@ import clsx from "clsx";
 
 import { useGetMenu } from "@/queries/useGetMenu";
 import { useMainContext } from "@/context/MainContext";
+import { HEIGHT_NAV_HEADER } from "../..";
 
 const PREFIX_NAV_ITEM = "nav";
 
@@ -22,22 +23,33 @@ export function NavContent() {
         PREFIX_NAV_ITEM + categorySelected,
       );
       if (element) {
-        element.scrollIntoView({
-          behavior: "auto",
-          block: "center",
-          inline: "center",
+        const windowWidth = containerRef.current.clientWidth;
+        const elementWidth = element.offsetWidth;
+        const elementLeft = element.offsetLeft;
+
+        const scrollToPositionX =
+          elementLeft - windowWidth / 2 + elementWidth / 2;
+
+        containerRef.current.scrollTo({
+          left: scrollToPositionX,
+          behavior: "smooth",
         });
       }
     }
   }, [categorySelected]);
 
   function handleClick(id: string) {
+    setCategorySelected(id);
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({
-        behavior: "auto",
-        block: "center",
-        inline: "center",
+      const windowHeight = window.innerHeight - HEIGHT_NAV_HEADER;
+      const elementHeight = element.offsetHeight;
+      const elementTop = element.offsetTop - HEIGHT_NAV_HEADER;
+      const scrollToPosition =
+        elementTop - windowHeight / 2 + elementHeight / 2;
+      window.scrollTo({
+        top: scrollToPosition,
+        behavior: "smooth",
       });
     }
   }
@@ -80,7 +92,7 @@ export function NavContent() {
 
   return (
     <nav
-      className="cursor-default select-none overflow-hidden border-b-2"
+      className="flex cursor-default select-none overflow-hidden whitespace-nowrap border-b-2"
       ref={containerRef}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
@@ -91,34 +103,29 @@ export function NavContent() {
       onTouchEnd={handleDragEnd}
       onTouchCancel={handleDragEnd}
     >
-      <div className="flex whitespace-nowrap">
-        {data.map((d) => (
-          <div key={d.id} className="relative">
-            <div
-              id={PREFIX_NAV_ITEM + d.id}
-              onClick={() => handleClick(d.id)}
-              className={clsx(
-                "flex h-12 flex-col justify-center px-2.5 font-bold transition-colors duration-300",
-                {
-                  ["text-primary"]: categorySelected === d.id,
-                  ["text-text"]: categorySelected !== d.id,
-                },
-              )}
-            >
-              <div>{d.name}</div>
-            </div>
-
-            <div
-              className={clsx(
-                "absolute bottom-0 left-0 right-0 h-1 rounded transition-colors duration-300",
-                {
-                  ["bg-primary"]: categorySelected === d.id,
-                },
-              )}
-            />
+      {data.map((d) => (
+        <div key={d.id}>
+          <div
+            id={PREFIX_NAV_ITEM + d.id}
+            onClick={() => handleClick(d.id)}
+            className={clsx(
+              "flex h-12 flex-col justify-center px-2.5 font-bold transition-colors duration-300",
+              {
+                ["text-primary"]: categorySelected === d.id,
+                ["text-text"]: categorySelected !== d.id,
+              },
+            )}
+          >
+            <div>{d.name}</div>
           </div>
-        ))}
-      </div>
+
+          <div
+            className={clsx("h-1 rounded transition-colors duration-300", {
+              ["bg-primary"]: categorySelected === d.id,
+            })}
+          />
+        </div>
+      ))}
     </nav>
   );
 }
