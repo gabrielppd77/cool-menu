@@ -17,29 +17,24 @@ export function NavContent() {
   const { data: _data, isLoading, isFetching } = useGetMenu();
   const data = _data || [];
 
-  useEffect(() => {
-    if (categorySelected) {
-      const element = document.getElementById(
-        PREFIX_NAV_ITEM + categorySelected,
-      );
-      if (element) {
-        const windowWidth = containerRef.current.clientWidth;
-        const elementWidth = element.offsetWidth;
-        const elementLeft = element.offsetLeft;
+  function scrollToCategoyNav(id: string) {
+    const element = document.getElementById(PREFIX_NAV_ITEM + id);
+    if (element) {
+      const windowWidth = containerRef.current.clientWidth;
+      const elementWidth = element.offsetWidth;
+      const elementLeft = element.offsetLeft;
 
-        const scrollToPositionX =
-          elementLeft - windowWidth / 2 + elementWidth / 2;
+      const scrollToPositionX =
+        elementLeft - windowWidth / 2 + elementWidth / 2;
 
-        containerRef.current.scrollTo({
-          left: scrollToPositionX,
-          behavior: "smooth",
-        });
-      }
+      containerRef.current.scrollTo({
+        left: scrollToPositionX,
+        behavior: "smooth",
+      });
     }
-  }, [categorySelected]);
+  }
 
-  function handleClick(id: string) {
-    setCategorySelected(id);
+  function scrollToCategory(id: string) {
     const element = document.getElementById(id);
     if (element) {
       const windowHeight = window.innerHeight - HEIGHT_NAV_HEADER;
@@ -52,6 +47,17 @@ export function NavContent() {
         behavior: "smooth",
       });
     }
+  }
+
+  useEffect(() => {
+    if (categorySelected) {
+      scrollToCategoyNav(categorySelected);
+    }
+  }, [categorySelected]);
+
+  function handleClick(id: string) {
+    setCategorySelected(id);
+    scrollToCategory(id);
   }
 
   const handleMouseDown = (
@@ -104,12 +110,12 @@ export function NavContent() {
       onTouchCancel={handleDragEnd}
     >
       {data.map((d) => (
-        <div key={d.id}>
+        <div key={d.id} className="-mb-0.5">
           <div
             id={PREFIX_NAV_ITEM + d.id}
             onClick={() => handleClick(d.id)}
             className={clsx(
-              "flex h-12 flex-col justify-center px-2.5 font-bold transition-colors duration-300",
+              "-mb-1 flex h-12 flex-col justify-center px-2.5 font-bold transition-colors duration-300",
               {
                 ["text-primary"]: categorySelected === d.id,
                 ["text-text"]: categorySelected !== d.id,

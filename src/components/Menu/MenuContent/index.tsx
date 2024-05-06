@@ -11,31 +11,31 @@ export function MenuContent() {
 
   const { setCategorySelected } = useMainContext();
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     for (let index = 0; index < data.length; index++) {
-  //       const category = data[index];
-  //       const categoryElement = document.getElementById(category.id);
-  //       if (categoryElement) {
-  //         let { top } = categoryElement.getBoundingClientRect();
-  //         let { innerHeight } = window;
+  useEffect(() => {
+    const handleScroll = () => {
+      for (let index = 0; index < data.length; index++) {
+        const category = data[index];
+        const categoryElement = document.getElementById(category.id);
+        if (categoryElement) {
+          let { top } = categoryElement.getBoundingClientRect();
+          let { innerHeight } = window;
 
-  //         top -= HEIGHT_NAV_HEADER;
-  //         innerHeight = (innerHeight - HEIGHT_NAV_HEADER) / 2;
+          top -= HEIGHT_NAV_HEADER;
+          innerHeight = (innerHeight - HEIGHT_NAV_HEADER) / 2;
 
-  //         if (top > 0 && top < innerHeight) {
-  //           setCategorySelected(category.id);
-  //         }
-  //       }
-  //     }
-  //   };
+          if (top > 0 && top < innerHeight) {
+            setCategorySelected(category.id);
+          }
+        }
+      }
+    };
 
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [data]);
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   return (
     <div>
