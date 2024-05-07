@@ -2,19 +2,24 @@ import { create } from "zustand";
 
 interface MainContextProps {
   isOpenSearch: boolean;
-  toggleOpenSearch: () => void;
   categorySelected: string | null;
-  setCategorySelected: (newCategory: string | null) => void;
+  isCategoryClicked: boolean;
+
+  toggleOpenSearch: () => void;
+  setCategorySelected: (categorySelected: string | null) => void;
+  setCategoryClicked: (isCategoryClicked: boolean) => void;
 }
 
 export const useMainContext = create<MainContextProps>((set) => ({
   isOpenSearch: false,
+  categorySelected: null,
+  isCategoryClicked: false,
+
   toggleOpenSearch: () =>
     set(({ isOpenSearch, ...rest }) => ({
       ...rest,
       isOpenSearch: !isOpenSearch,
     })),
-  categorySelected: null,
-  setCategorySelected: (categorySelected: string | null) =>
-    set({ categorySelected }),
+  setCategorySelected: (categorySelected) => set({ categorySelected }),
+  setCategoryClicked: (isCategoryClicked) => set({ isCategoryClicked }),
 }));

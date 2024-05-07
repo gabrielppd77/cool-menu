@@ -10,7 +10,10 @@ export function NavSearch() {
 
   return (
     <div
-      className={`position fixed left-0 right-0 top-[${HEIGHT_NAV_HEADER}px]`}
+      className={`position fixed left-0 right-0`}
+      style={{
+        top: HEIGHT_NAV_HEADER,
+      }}
     >
       <motion.div
         initial={{ y: -300, opacity: 0 }}
@@ -22,11 +25,14 @@ export function NavSearch() {
             <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-2.5">
               <Search className="size-5 text-primary" />
             </div>
-            <input
-              type="text"
-              className="block h-11 w-full rounded-lg bg-gray-200 p-1.5 ps-10 text-sm text-gray-900"
-              placeholder="Buscar no cardápio"
-            />
+            {isOpenSearch && (
+              <input
+                type="text"
+                autoFocus
+                className="block h-11 w-full rounded-lg bg-gray-200 p-1.5 ps-10 text-sm text-gray-900"
+                placeholder="Buscar no cardápio"
+              />
+            )}
           </div>
         </div>
       </motion.div>

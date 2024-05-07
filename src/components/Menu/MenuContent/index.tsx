@@ -9,10 +9,12 @@ export function MenuContent() {
   const { data: _data, isLoading, isFetching } = useGetMenu();
   const data = _data || [];
 
-  const { setCategorySelected } = useMainContext();
+  const { isCategoryClicked, setCategoryClicked, setCategorySelected } =
+    useMainContext();
 
   useEffect(() => {
     const handleScroll = () => {
+      if (isCategoryClicked) return;
       for (let index = 0; index < data.length; index++) {
         const category = data[index];
         const categoryElement = document.getElementById(category.id);
@@ -30,12 +32,18 @@ export function MenuContent() {
       }
     };
 
+    function handleScrollEnd() {
+      setCategoryClicked(false);
+    }
+
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scrollend", handleScrollEnd);
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scrollend", handleScrollEnd);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data, isCategoryClicked]);
 
   return (
     <div>

@@ -13,7 +13,8 @@ export function NavContent() {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
 
-  const { categorySelected, setCategorySelected } = useMainContext();
+  const { categorySelected, setCategorySelected, setCategoryClicked } =
+    useMainContext();
   const { data: _data, isLoading, isFetching } = useGetMenu();
   const data = _data || [];
 
@@ -56,6 +57,8 @@ export function NavContent() {
   }, [categorySelected]);
 
   function handleClick(id: string) {
+    setCategorySelected(id);
+    setCategoryClicked(true);
     scrollToCategory(id);
   }
 
