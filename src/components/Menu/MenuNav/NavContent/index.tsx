@@ -56,7 +56,6 @@ export function NavContent() {
   }, [categorySelected]);
 
   function handleClick(id: string) {
-    setCategorySelected(id);
     scrollToCategory(id);
   }
 
@@ -98,7 +97,7 @@ export function NavContent() {
 
   return (
     <nav
-      className="flex cursor-default select-none overflow-hidden whitespace-nowrap border-b-2"
+      className="flex cursor-default select-none overflow-hidden whitespace-nowrap"
       ref={containerRef}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
@@ -110,7 +109,7 @@ export function NavContent() {
       onTouchCancel={handleDragEnd}
     >
       {data.map((d) => (
-        <div key={d.id} className="-mb-0.5">
+        <div key={d.id}>
           <div
             id={PREFIX_NAV_ITEM + d.id}
             onClick={() => handleClick(d.id)}
