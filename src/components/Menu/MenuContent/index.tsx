@@ -4,6 +4,7 @@ import { useGetMenu } from "@/queries/useGetMenu";
 import { useMainContext } from "@/context/MainContext";
 
 import { HEIGHT_NAV_HEADER } from "..";
+import { Product } from "./Product";
 
 export function MenuContent() {
   const { data: _data, isLoading, isFetching } = useGetMenu();
@@ -52,10 +53,14 @@ export function MenuContent() {
         <section key={d.id} id={d.id}>
           <div className="font-bold">{d.name}</div>
           <div>
-            {d.products.map((p) => (
-              <div key={p.id} className="h-32 w-full bg-green-200">
-                {p.name}
-              </div>
+            {d.products.map(({ id, name, description, imageUrl, price }) => (
+              <Product
+                key={id}
+                name={name}
+                description={description}
+                imageUrl={imageUrl}
+                price={price}
+              />
             ))}
           </div>
         </section>

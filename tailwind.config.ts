@@ -11,7 +11,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: colors.red[400],
+        primary: colors.gray[500],
         text: colors.gray[600],
         paper: colors.gray[50],
       },
